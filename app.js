@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(jwt({ 
+app.use(jwt({
   secret: 'shhhhhhared-secret',
   getToken: function fromHeaderOrCookie (req) { //fromHeaderOrQuerystring
     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
@@ -43,7 +43,7 @@ app.use(jwt({
     } else if (req.cookies && req.cookies.token) {
       return req.cookies.token;
     }
-    return null;  
+    return null;
   }
 }).unless({
   path: [
@@ -53,6 +53,9 @@ app.use(jwt({
     { url:  /\/pets/i, methods: ['GET']  }
   ]
 }));
+
+//Global Variables
+petSpecies = ['dog', 'cat', 'bird', 'mythical'];
 
 app.use('/', controllers);
 app.use('/', auth);

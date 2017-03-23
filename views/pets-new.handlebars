@@ -4,11 +4,19 @@
     <form action="#" id="post-form">
       <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" name="name" class="form-control">  
+        <input type="text" name="name" class="form-control">
       </div>
       <div class="form-group">
         <label for="description">Description</label>
-        <textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>  
+        <textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>
+      </div>
+      <div>
+        <select name="species" class="form-group" id="pet-species">
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="bird">Bird</option>
+          <option value="mythical">Mystery Mythical Creature (totally legal)</option>
+        </select>
       </div>
       <div class="text-right">
         <button type="submit" class="btn btn-primary">Save</button>
@@ -16,4 +24,3 @@
     </form>
   </div>
 </div>
-    

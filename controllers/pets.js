@@ -19,10 +19,11 @@ router.get('/:id', function(req, res, next) {
 // CREATE POST
 router.post('/', function(req, res, next) {
   var pet = new Pet(req.body);
+  console.log(req.body);
 
   pet.save(function (err) {
     if (err) { return res.status(400).send(err) }
-    
+
     res.send(pet);
   });
 });

@@ -3,13 +3,11 @@ $(document).ready(function() {
   // SUBMIT POST FORM
   $('#post-form').submit(function (e) {
     e.preventDefault();
-
-    var post = $(this).serialize();
-
+    var pet = $(this).serialize();
     $.ajax({
       type: 'POST',
       url: '/pets',
-      data: post,
+      data: pet,
       success: function(data) {
         window.location.href = "/pets/" + data._id
       },
