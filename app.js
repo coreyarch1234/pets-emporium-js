@@ -1,5 +1,10 @@
 var express = require('express');
 var path = require('path');
+var app = express();
+var http = require('http');
+var httpServer = http.createServer(app);
+var io = require('socket.io')(httpServer);
+
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -17,7 +22,8 @@ var users = require('./controllers/users');
 var pets = require('./controllers/pets');
 var comments = require('./controllers/comments');
 
-var app = express();
+
+
 
 app.use(cookieParser())
 
@@ -63,6 +69,15 @@ app.use('/users', users);
 app.use('/pets', pets);
 app.use('/pets/:petId/comments', comments);
 
+io.sockets.on('connection', function(socket) {
+    console.log('a user connected');
+    socket.on('foo', function(data){
+        console.log(data.message)
+     });
+
+     io.emit('update dog status', {message: "Bark bark bark!!"});
+});
+
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //   var err = new Error('Not Found');
@@ -95,4 +110,11 @@ if (app.get('env') === 'development') {
 // });
 
 
-module.exports = app;
+// module.exports = app;
+//DEPLOY
+httpServer.listen(process.env.PORT || 3000, function() {
+
+});
+
+//
+// module.exports = httpServer;

@@ -6,11 +6,11 @@ var mongoose = require('mongoose'),
 var PetSchema = new Schema({
     createdAt       : { type: Date }
   , updatedAt       : { type: Date }
-
+  , imageUrl        : {type: String, required: false}
   , name            : { type: String, required: true }
   , species         : { type: String }
   , description     : { type: String }
-  
+
   , comments        : [{ type: Schema.ObjectId, ref: "Comment"}]
 });
 
@@ -21,7 +21,7 @@ PetSchema.pre('save', function(next){
   if ( !this.createdAt ) {
     this.createdAt = now;
   }
-  
+
   next();
 });
 
